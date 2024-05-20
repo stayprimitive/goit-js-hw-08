@@ -87,8 +87,15 @@ gallery.insertAdjacentHTML("beforeend", createGallery(images));
 
 const galleryItem = document.querySelector(".gallery-item");
 gallery.addEventListener("click", function (event) {
+  event.preventDefault();
   if (event.target.nodeName !== "IMG") {
     return;
   }
   console.log(event.target.dataset.source);
+
+  const instance = basicLightbox.create(`
+  <img src="${event.target.dataset.source}" width="1400" height="900">
+  `);
+
+  instance.show();
 });
